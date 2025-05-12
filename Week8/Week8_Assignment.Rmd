@@ -1,0 +1,169 @@
+---
+title: "Week8_Assignment- Computational Techniques in Data Science"
+author: "Jackline Mboya - 193670"
+date: "2025-05-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup-mirror, include=FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+```
+
+
+
+```{r}
+install.packages("Benchmarking")
+```
+
+# Question 1: Hospital Department Efficiency
+Question:
+
+You are analyzing the performance of 4 hospital departments. Each department has a different combination of medical staff and beds. You want to know:
+
+Which department is most efficient in treating patients with limited resources?
+
+### Inputs:
+Doctors: [40, 35, 45, 38]
+
+Nurses: [80, 70, 85, 75]
+
+Beds: [150, 140, 160, 145]
+
+### Outputs:
+Patients treated:[2000, 1900, 2100, 1950]
+
+Survival rate: [0.97, 0.96, 0.98, 0.95]
+
+```{r}
+library(Benchmarking)
+```
+
+
+```{r}
+# Inputs
+X_hospital <- matrix(c(
+  40, 80, 150,
+  35, 70, 140,
+  45, 85, 160,
+  38, 75, 145
+), ncol = 3, byrow = TRUE)
+
+# Outputs
+Y_hospital <- matrix(c(
+  2000, 0.97,
+  1900, 0.96,
+  2100, 0.98,
+  1950, 0.95
+), ncol = 2, byrow = TRUE)
+
+# Run CCR Input-Oriented DEA
+eff_hospital <- dea(X_hospital, Y_hospital, RTS = "crs", ORIENTATION = "in")
+
+# Print results
+cat("Hospital Department Efficiencies:\n")
+print(round(eff_hospital$eff, 4))
+
+# Identify most efficient hospital
+most_efficient_hospital <- which.max(eff_hospital$eff)
+cat("\nThe most efficient hospital department is: Hospital", LETTERS[most_efficient_hospital], "\n")
+```
+# Question 2: Retail Store Efficiency
+Question:
+
+A retail company wants to assess whether its 4 branches are efficiently turning staff and marketing investment into profit.
+
+Which store branch is the best performer given similar resource levels?
+
+### Inputs:
+Marketing Spend (USD): [$12,000, $10,000, $11,500, $9,800]
+
+Employees: [20, 18, 22, 19]
+
+### Outputs:
+Revenue (USD): [$110,000, $100,000, $120,000, $95,000]
+
+Customers: [2,300, 2,000, 2,600, 1,900]
+
+```{r}
+# Inputs
+X_retail <- matrix(c(
+  12000, 20,
+  10000, 18,
+  11500, 22,
+  9800, 19
+), ncol = 2, byrow = TRUE)
+
+# Outputs
+Y_retail <- matrix(c(
+  110000, 2300,
+  100000, 2000,
+  120000, 2600,
+  95000, 1900
+), ncol = 2, byrow = TRUE)
+
+# Run CCR Input-Oriented DEA
+eff_retail <- dea(X_retail, Y_retail, RTS = "crs", ORIENTATION = "in")
+
+# Print results
+cat("Retail Store Efficiencies:\n")
+print(round(eff_retail$eff, 4))
+
+# Identify most efficient store
+most_efficient_store <- which.max(eff_retail$eff)
+cat("\nThe most efficient retail store is: Store", LETTERS[most_efficient_store], "\n")
+```
+# Question 3: School Performance Evaluation
+Question:
+
+A school district monitors 4 schools to find out which one is using its resources most efficiently to produce better academic results.
+
+Which school is most efficient in converting resources into academic outcomes?
+
+### Inputs:
+Teachers: 30, 25, 20, 28
+
+Budget (USD): [$800,000, $750,000, $700,000, $770,000]
+
+### Outputs:
+Graduation Rate (%): [85, 90, 82, 88]
+
+Average Test Score (out of 100): [78, 80, 76, 79]
+
+```{r}
+# Inputs
+X_school <- matrix(c(
+  30, 800000,
+  25, 750000,
+  20, 700000,
+  28, 770000
+), ncol = 2, byrow = TRUE)
+
+# Outputs
+Y_school <- matrix(c(
+  85, 78,
+  90, 80,
+  82, 76,
+  88, 79
+), ncol = 2, byrow = TRUE)
+
+# Run CCR Input-Oriented DEA
+eff_school <- dea(X_school, Y_school, RTS = "crs", ORIENTATION = "in")
+
+# Print results
+cat("School Performance Efficiencies:\n")
+print(round(eff_school$eff, 4))
+
+# Identify most efficient school
+most_efficient_school <- which.max(eff_school$eff)
+cat("\nThe most efficient school is: School", LETTERS[most_efficient_school], "\n")
+```
+
+```{r}
+
+```
+
