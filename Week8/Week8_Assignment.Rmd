@@ -70,7 +70,7 @@ print(round(eff_hospital$eff, 4))
 
 # Identify most efficient hospital
 most_efficient_hospital <- which.max(eff_hospital$eff)
-cat("\nThe most efficient hospital department is: Hospital", LETTERS[most_efficient_hospital], "\n")
+cat("\nThe most efficient hospital department is: Department", LETTERS[most_efficient_hospital], "\n")
 ```
 # Question 2: Retail Store Efficiency
 Question:
@@ -88,6 +88,7 @@ Employees: [20, 18, 22, 19]
 Revenue (USD): [$110,000, $100,000, $120,000, $95,000]
 
 Customers: [2,300, 2,000, 2,600, 1,900]
+
 
 ```{r}
 # Inputs
@@ -134,6 +135,7 @@ Graduation Rate (%): [85, 90, 82, 88]
 
 Average Test Score (out of 100): [78, 80, 76, 79]
 
+
 ```{r}
 # Inputs
 X_school <- matrix(c(
@@ -161,9 +163,5 @@ print(round(eff_school$eff, 4))
 # Identify most efficient school
 most_efficient_school <- which.max(eff_school$eff)
 cat("\nThe most efficient school is: School", LETTERS[most_efficient_school], "\n")
-```
-
-```{r}
-
 ```
 
